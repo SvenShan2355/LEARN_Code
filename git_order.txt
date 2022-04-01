@@ -1,0 +1,6 @@
+git init /当位于正确目录下时，创建版本库
+git add <file name> /添加文件
+git commit -m "change discribe" /提交已添加文件到仓库，并添加一段说明
+git status /查看版本库现状
+git diff /查看未提交版本与上一版本差别
+git log /查看每一次提交的说明
