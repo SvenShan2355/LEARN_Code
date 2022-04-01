@@ -8,3 +8,6 @@ git log --pretty=oneline /查看每一次提交的说明(简洁版)
 git reset --hard <hash_id> /跳转到某一次commit id对应的状态(commit id通过git log命令或者git reflog命令来获取)
 git checkout -- <file name> /让工作区文件回到最近一次git commit或git add时的状态
 git reset HEAD <file name> /把暂存区的修改撤销掉，重新放回工作区
+
+git remote add <github_repository_name> git@<github_link> /将本地库关联到远程库
+git push -u <github_repository_name> master /将本地库所有内容推送到远程库
