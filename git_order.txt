@@ -4,3 +4,7 @@ git commit -m "change discribe" /提交已添加文件到仓库，并添加一�
 git status /查看版本库现状
 git diff /查看未提交版本与上一版本差别
 git log /查看每一次提交的说明
+git log --pretty=oneline /查看每一次提交的说明(简洁版)
+git reset --hard <hash_id> /跳转到某一次commit id对应的状态(commit id通过git log命令或者git reflog命令来获取)
+git checkout -- <file name> /让工作区文件回到最近一次git commit或git add时的状态
+git reset HEAD <file name> /把暂存区的修改撤销掉，重新放回工作区
