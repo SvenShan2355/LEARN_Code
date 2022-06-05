@@ -1,3 +1,4 @@
+创建版本库
 git init /当位于正确目录下时，创建版本库
 git add <file name> /添加文件
 git commit -m "change discribe" /提交已添加文件到仓库，并添加一段说明
@@ -9,5 +10,46 @@ git reset --hard <hash_id> /跳转到某一次commit id对应的状态(commit id
 git checkout -- <file name> /让工作区文件回到最近一次git commit或git add时的状态
 git reset HEAD <file name> /把暂存区的修改撤销掉，重新放回工作区
 
+远程版本库使用
 git remote add <github_repository_name> git@<github_link> /将本地库关联到远程库
-git push -u <github_repository_name> master /将本地库所有内容推送到远程库
+git push -u <github_repository_name> <branch_name> /将本地库所有内容推送到远程库(首次推送)
+git push <github_repository_name> <branch_name> /将本地库所有内容推送到远程库
+git remote -v /查看远程库信息
+git remote rm <github_repository_name> /移除本地库和远程库的关联
+
+分支使用
+git switch -c <branch_name> /创建分支，然后切换到该分支
+	等价于
+	git branch <branch_name> /创建分支
+	git switch <branch_name> /切换到分支
+git branch /查看所有分支，当前分支前面会标“*”号
+git merge <branch_name> /将分支合并到当前分支上
+git branch -d <branch_name> /删除(已合并)分支
+git branch -D <branch_name> /删除(未合并)分支，将丢失数据
+
+git stash /储存当前工作场景
+git stash list /已储存工作场景列表
+git stash pop <stash_name> /应用并删除stash的工作场景
+git stash apply <stash_name> /应用stash的工作场景
+git stash drop <stash_name> /删除stash的工作场景
+
+git cherry-pick <hash_id> /复制一个特定的提交到当前分支
+
+多人协作
+	首先，可以试图用git push origin <branch-name>推送自己的修改
+	如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并
+	如果合并有冲突，则解决冲突，并在本地提交
+	没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功
+	如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>
+
+git rebase /把分叉的提交历史“整理”成一条直线
+
+git tag <tagname> <hash_id> /给对应的commit版本打上标签，若未输入hash id则将当前commit打上标签
+	git tag -a <tagname>  -m "change discribe" <hash_id> /给对应的commit版本打上标签并带说明
+git show <tagname>  /查看标签信息
+git push origin <tagname> /推送标签到远程库
+	git push origin --tags /一次性推送全部尚未推送到远程的本地标签
+git tag -d <tagname> /删除标签
+git push origin :refs/tags/<tagname> /删除远程标签
+
+git clone git@<github_link> /通过“Fork”就在自己的账号下克隆了一个仓库，然后，从自己的账号下clone到本地版本库中
